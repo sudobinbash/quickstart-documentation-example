@@ -1,2 +1,4 @@
-- _us-east-1 (N. Virginia)_ (EXAMPLE)
-- _us-east-2 (Ohio)_ (EXAMPLE)
+- Amazon Linux, Centos, Ubuntu, and SUSE: **us-east-1**, **us-east-2**, **us-west-1**, **us-west-2**, **ca-central-1**, **eu-west-1**, **eu-west-2**, **eu-west-3**, **eu-central-1**, **eu-north-1**, **eu-south-1**, **ap-northeast-1**, **ap-northeast-2**, **ap-south-1**, **ap-east-1**, **ap-southeast-1**, **ap-southeast-2**, **me-south-1**, and **sa-east-1**.
+- Amazon Linux and SUSE: **us-gov-west-1** and **us-gov-east-1**
+- Amazon Linux, Centos and SUSE: **cn-north-1** and **cn-northwest-1**
+- Amazon Linux, Centos, and Ubuntu: **af-south-1**

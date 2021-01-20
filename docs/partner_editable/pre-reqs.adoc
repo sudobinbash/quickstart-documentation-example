@@ -1,7 +1,39 @@
 // If no preperation is required, remove all content from here
 
 ==== Prepare your AWS account
-_Describe any setup required in the AWS account prior to template launch_
+
+Before you launch the Quick Start, your account must be configured as specified in the following table. Otherwise, deployment might fail.
+
+[cols=",",]
+|===
+
+|https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html[Key pair] a|
+Make sure that at least one Amazon EC2 key pair exists in your AWS account in the Region where you plan to deploy the Quick Start. Make note of the key pair name. You need it during deployment. To create a key pair, follow the https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html[instructions in the AWS documentation].
+
+For testing or proof-of-concept purposes, we recommend creating a new key pair instead of using one that’s already being used by a production instance.
+
+|https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_job-functions.html[IAM permissions] |Before launching the Quick Start, you must log in to the AWS Management Console with IAM permissions for the resources and actions the templates deploy. The _AdministratorAccess_ managed policy within IAM provides sufficient permissions, although your organization may choose to use a custom policy with more restrictions.
+
+|http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html[S3 buckets]|Unique S3 bucket names are automatically generated based on the account number and region. If you delete a stack, the logging buckets are not deleted (to support security review). If you plan to re-deploy this Quick Start in the same region, you must first manually delete the S3 buckets that were created during the previous deployment; otherwise, the re-deployment will fail.
+|===
 
 ==== Prepare your {partner-company-name} account
-_Describe any setup required in the partner portal/account prior to template launch_
+
+Step 1. Sign in to your Okta Advanced Server Access Team
+
+Sign in to your Okta Advanced Server Access Team at https://app.scaleft.com with your Okta credentials. If you do not have an Advanced Server Access Team, see Planning the deployment earlier in this guide for instructions on how to create a tenant. 
+
+Step 2. Create a Project
+
+Create a new Advanced Server Access Project, which represents the authorization scope for a set of EC2 instances. Users and Groups are explicitly assigned to Projects, where role-based access and entitlements are specified. Okta manages and provisions accounts and entitlements to the downstream EC2 instances.
+
+Step 3. Configure Instance Enrollment
+
+In Okta Advanced Server Access, EC2 instances are enrolled with a specific Project using the Enrollment Token:
+
+Go to the Project detail page, and select the Enrollment Tab. Click ‘Create Enrollment Token’
+Give your Token a name, and click ‘Submit’
+Copy the Token value in the next screen for future reference
+
+**Note**: An Enrollment Token is an arbitrary base64 string purely meant as an association mechanism. There are no inherent security properties that require storing, vaulting, or rotating an Enrollment Token as if it were a secret. Even so, Enrollment Tokens can be revoked via the Advanced Server Access Dashboard.
+

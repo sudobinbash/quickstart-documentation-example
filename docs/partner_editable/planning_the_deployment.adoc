@@ -1,12 +1,76 @@
-=== Prerequisites
-_Prerequisites, such as Marketplace AMI subscription go here_
+
+TRASH!
 
 === Specialized Knowledge
-WARNING: This Quick Start assumes familiarity with <knowledge expectations>.
-This deployment guide also requires a moderate level of familiarity with
-AWS services. If you’re new to AWS, visit the
-https://aws.amazon.com/getting-started/[Getting Started Resource Center]
-and the https://aws.amazon.com/training/[AWS Training and Certification
-website]. These sites provide materials for learning how to design,
-deploy, and operate your infrastructure and applications on the AWS
-Cloud.
+
+This Quick Start assumes familiarity with Okta, Linux account management, SSH access, and networking. If you’re new to Okta, visit the https://www.okta.com/[Okta website] and the https://help.okta.com/en/prod/Content/index.htm[Okta Product Documentation] for information about the Okta Identity Cloud.
+
+This deployment guide also requires a moderate level of familiarity with AWS services. If you’re new to AWS, visit the https://aws.amazon.com/getting-started/[Getting Started Resource Center] and the https://aws.amazon.com/training/[AWS Training and Certification website]. These sites provide materials for learning how to design, deploy, and operate your infrastructure and applications on the AWS Cloud.
+
+=== Okta Org
+
+In order to proceed with this Quick Start Guide, you must be an Okta Org Administrator. If you don’t already have an Okta account, sign up for a Free Trial at https://www.okta.com/free-trial. 
+
+=== Advanced Server Access Team
+
+Okta Advanced Server Access is an integrated application with an existing Okta Org. To create an Advanced Server Access Team visit https://app.scaleft.com/p/signup and follow the signup instructions.
+
+=== AWS account
+
+If you don’t already have an AWS account, create one at https://aws.amazon.com/[https://aws.amazon.com] by following the on-screen instructions. Part of the sign-up process involves receiving a phone call and entering a PIN using the phone keypad.
+
+Your AWS account is automatically signed up for all AWS services. You are charged only for the services you use.
+
+=== Technical requirements
+
+Before you launch the Quick Start, your account must be configured as specified in the following table. Otherwise, deployment might fail.
+
+[cols=",",]
+|===
+|http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html[Resources] a|
+If necessary, request https://console.aws.amazon.com/servicequotas/home?region=us-east-2#!/[service quota increases] for the following resources. You might need to do this if an existing deployment uses these resources, and you might exceed the default quotas with this deployment. The https://console.aws.amazon.com/servicequotas/home?region=us-east-2#!/[Service Quotas console] displays your usage and quotas for some aspects of some services. For more information, see the https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html[AWS documentation].
+
+[cols=",",options="header",]
+|===
+|Resource |This deployment uses
+|VPCs |1
+|Elastic IP addresses |1
+|AWS Identity and Access Management (IAM) security groups |2
+|IAM roles |2
+|Auto Scaling groups |2
+|EC2 instances |2
+|===
+
+|https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html[Key pair] a|
+Make sure that at least one Amazon EC2 key pair exists in your AWS account in the Region where you plan to deploy the Quick Start. Make note of the key pair name. You need it during deployment. To create a key pair, follow the https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html[instructions in the AWS documentation].
+
+For testing or proof-of-concept purposes, we recommend creating a new key pair instead of using one that’s already being used by a production instance.
+
+|https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_job-functions.html[IAM permissions] |Before launching the Quick Start, you must log in to the AWS Management Console with IAM permissions for the resources and actions the templates deploy. The _AdministratorAccess_ managed policy within IAM provides sufficient permissions, although your organization may choose to use a custom policy with more restrictions.
+
+|http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html[S3 buckets]|Unique S3 bucket names are automatically generated based on the account number and region. If you delete a stack, the logging buckets are not deleted (to support security review). If you plan to re-deploy this Quick Start in the same region, you must first manually delete the S3 buckets that were created during the previous deployment; otherwise, the re-deployment will fail.
+|===
+
+=== Glossary of Okta terms
+
+[cols=",",]
+|===
+|Team|The top-level object representing an Okta Advanced Server Access tenant. Each Team is mapped to an Okta Org for Identity Management.
+
+|Project|A collection of Users, Groups, Servers, and Access Policies that share the same configuration and permissions.
+
+|Server|An EC2 instance that has the Okta Server Agent installed, and has been enrolled with an Okta Advanced Server Access project
+
+|User|A human or service user account that belongs to an Advanced Server Access Team.
+
+|Group|A collection of users who belong to an Advanced Server Access Team and who share RBAC permissions.
+
+|Client Application|A native Desktop application that interfaces with your local SSH & RDP tools, and communicates with Okta for authentication
+
+|Server Agent|A daemon running on each EC2 instance backed by Advanced Server Access that manages local users & groups, and captures login events
+
+|Enrollment Token|An arbitrary base64 string used as an association mechanism for a Server belonging to a Project
+
+|Client Certificate|The credential mechanism used to login to servers. OpenSSH or x.509 Client Certificates are issued by a programmable CA component of Okta Advanced Server Access, which act as a cryptographically signed attestation of trust.
+
+|===

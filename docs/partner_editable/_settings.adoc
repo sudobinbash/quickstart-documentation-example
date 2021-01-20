@@ -1,9 +1,9 @@
-:quickstart-project-name: quickstart-documentation-base
-:partner-product-name: Example Product Name
-:partner-company-name: Example Company Name, Ltd.
-:doc-month: May
-:doc-year: 2020
-:partner-contributors: John Doe and Jane Doe
-:quickstart-contributors: Jim Smith - AWS Global Partner SA, AWS & Joe Jones - Technical Product Manager, AWS
+:quickstart-project-name: quickstart-asa-aws
+:partner-product-name: Okta Advanced Server Access
+:partner-company-name: Okta
+:doc-month: Jan
+:doc-year: 2021
+:partner-contributors: Ivan Dwyer, Frederico Hakamine, and Adam Arkom
+:quickstart-contributors: Ivan Dwyer, Frederico Hakamine, and Adam Arkom
 :deployment_time: 30 minutes / 1 hour
 :default_deployment_region: us-east-1

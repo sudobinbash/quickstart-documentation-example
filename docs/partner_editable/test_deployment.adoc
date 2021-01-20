@@ -1,2 +1,20 @@
 // Add steps as necessary for accessing the software, post-configuration, and testing. Don’t include full usage instructions for your software, but add links to your product documentation for that information.
-<Add instructions for testing the deployment.>
+
+Once the Cloud Formation stack is complete, you can test the deployment by checking whether the instances were properly enrolled with your Advanced Server Access Project.
+
+1. Visit the Advanced Server Access Dashboard at: https://app.scaleft.com
+
+2. Login to your Team, and then select the Project you created for this Quick Start Guide
+Select the “Servers” tab. The Four instances that were deployed in the stack, 2 bastion hosts and 2 target hosts, should appear in the list. 
+
+**Note** If they do not show up in the Server inventory, that indicates that the enrollment process did not work. Doublecheck the Enrollment Token was copied over in full as a stack parameter.
+
+3. Select any one of the target instances, and copy the value for Name from the detail view. Open your local terminal and run:
+
+    `$ sft ssh <hostname>``
+
+**Note** If you receive an error trying to login, make sure that you completed all the prerequisite steps, have the Client Application installed, and have assigned your user account to the Project the Servers belong to.
+
+4. Once the ssh connection is established, you can verify that the installation process was successful, and that the Server Agent is running, by running the command:
+
+    `$ ps -aux | grep sftd`
